@@ -19,22 +19,26 @@ var (
 )
 
 const (
-	ButtonPushed   = 0
-	ButtonReleased = 1
+	ButtonPushed   uint16 = 0
+	ButtonReleased uint16 = 1
 )
 
 type Button struct {
 	pos int16
 }
 
-func (b Button) Get() int {
-	return int(gba.KEY.INPUT.Get() & (1 << b.pos))
+// ReadButtons gets the current state of the buttons.
+// It is best to only read this one time per video frame.
+func ReadButtons() uint16 {
+	return gba.KEY.INPUT.Get()
 }
 
-func (b Button) IsPushed() bool {
-	return b.Get() == ButtonPushed
+// IsPushed checks to see if the button is pushed.
+func (b Button) IsPushed(key uint16) bool {
+	return key&(1<<b.pos) == ButtonPushed
 }
 
-func (b Button) IsReleased() bool {
-	return b.Get() == ButtonReleased
+// IsReleased checks to see if the button is released.
+func (b Button) IsReleased(key uint16) bool {
+	return key&(1<<b.pos) == ButtonReleased
 }
