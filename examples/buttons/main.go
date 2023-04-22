@@ -1,7 +1,6 @@
 package main
 
 import (
-	"device/gba"
 	"machine"
 
 	"image/color"
@@ -34,9 +33,7 @@ func main() {
 	// Set up the display
 	display.Configure()
 
-	gba.DISP.DISPSTAT.SetBits(gba.DISPSTAT_VBLANK_IRQ_ENABLE << gba.DISPSTAT_VBLANK_IRQ_Pos)
 	interrupt.New(machine.IRQ_VBLANK, update).Enable()
-
 	clearScreen(black)
 
 	for {
@@ -44,29 +41,31 @@ func main() {
 }
 
 func update(interrupt.Interrupt) {
+	key := tinygba.ReadButtons()
+
 	switch {
-	case tinygba.ButtonStart.IsPushed():
+	case tinygba.ButtonStart.IsPushed(key):
 		clearScreen(black)
 
-	case tinygba.ButtonSelect.IsPushed():
+	case tinygba.ButtonSelect.IsPushed(key):
 		clearScreen(white)
 
-	case tinygba.ButtonRight.IsPushed():
+	case tinygba.ButtonRight.IsPushed(key):
 		clearScreen(green)
 
-	case tinygba.ButtonLeft.IsPushed():
+	case tinygba.ButtonLeft.IsPushed(key):
 		clearScreen(red)
 
-	case tinygba.ButtonDown.IsPushed():
+	case tinygba.ButtonDown.IsPushed(key):
 		clearScreen(gBlue)
 
-	case tinygba.ButtonUp.IsPushed():
+	case tinygba.ButtonUp.IsPushed(key):
 		clearScreen(gRed)
 
-	case tinygba.ButtonA.IsPushed():
+	case tinygba.ButtonA.IsPushed(key):
 		clearScreen(gYellow)
 
-	case tinygba.ButtonB.IsPushed():
+	case tinygba.ButtonB.IsPushed(key):
 		clearScreen(gGreen)
 
 	}
@@ -74,7 +73,7 @@ func update(interrupt.Interrupt) {
 
 func clearScreen(c color.RGBA) {
 	tinydraw.FilledRectangle(
-		display,
+		&display,
 		int16(0), int16(0),
 		screenWidth, screenHeight,
 		c,
