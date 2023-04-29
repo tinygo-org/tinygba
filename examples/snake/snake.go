@@ -128,22 +128,8 @@ func (g *Game) Play(direction int) {
 	}
 
 	switch direction {
-	case SnakeLeft:
-		if g.snake.direction != SnakeLeft {
-			g.snake.direction = SnakeLeft
-		}
-	case SnakeRight:
-		if g.snake.direction != SnakeRight {
-			g.snake.direction = SnakeRight
-		}
-	case SnakeUp:
-		if g.snake.direction != SnakeUp {
-			g.snake.direction = SnakeUp
-		}
-	case SnakeDown:
-		if g.snake.direction != SnakeDown {
-			g.snake.direction = SnakeDown
-		}
+	case SnakeLeft, SnakeRight, SnakeUp, SnakeDown:
+		g.snake.direction = int16(direction)
 	}
 
 	g.moveSnake()
