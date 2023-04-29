@@ -31,7 +31,7 @@ func main() {
 	// Set up the display
 	display.Configure()
 
-	clearScreen(black)
+	tinygba.FillScreen(black)
 
 	for {
 		tinygba.WaitForVBlank()
@@ -45,32 +45,28 @@ func update() {
 
 	switch {
 	case tinygba.ButtonStart.IsPushed(key):
-		clearScreen(black)
+		tinygba.FillScreen(black)
 
 	case tinygba.ButtonSelect.IsPushed(key):
-		clearScreen(white)
+		tinygba.FillScreen(white)
 
 	case tinygba.ButtonRight.IsPushed(key):
-		clearScreen(green)
+		tinygba.FillScreen(green)
 
 	case tinygba.ButtonLeft.IsPushed(key):
-		clearScreen(red)
+		tinygba.FillScreen(red)
 
 	case tinygba.ButtonDown.IsPushed(key):
-		clearScreen(gBlue)
+		tinygba.FillScreen(gBlue)
 
 	case tinygba.ButtonUp.IsPushed(key):
-		clearScreen(gRed)
+		tinygba.FillScreen(gRed)
 
 	case tinygba.ButtonA.IsPushed(key):
-		clearScreen(gYellow)
+		tinygba.FillScreen(gYellow)
 
 	case tinygba.ButtonB.IsPushed(key):
-		clearScreen(gGreen)
+		tinygba.FillScreen(gGreen)
 
 	}
-}
-
-func clearScreen(c color.RGBA) {
-	tinygba.FillScreen(c)
 }
