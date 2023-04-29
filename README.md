@@ -1,5 +1,7 @@
 # tinygba
 
+![snake](./images/snake.png)
+
 Tools and helpers for developing GBA programs using TinyGo.
 
 Still highly experimental and subject to sudden changes.
