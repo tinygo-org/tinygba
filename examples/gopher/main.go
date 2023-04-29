@@ -6,7 +6,6 @@ import (
 	"machine"
 
 	"image/color"
-	"runtime/interrupt"
 
 	"tinygo.org/x/tinydraw"
 	"tinygo.org/x/tinyfont"
@@ -48,11 +47,11 @@ func main() {
 	// Display Gopher text message and draw our Gophers
 	drawGophers()
 
-	// Creates an interrupt that will call the "update" fonction below, hardware way to display things on the screen
-	interrupt.New(machine.IRQ_VBLANK, update).Enable()
-
 	// Infinite loop to avoid exiting the application
 	for {
+		tinygba.WaitForVBlank()
+
+		update()
 	}
 }
 
@@ -73,7 +72,8 @@ func drawGophers() {
 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
 }
 
-func update(interrupt.Interrupt) {
+
+func update() {
 	key := tinygba.ReadButtons()
 
 	switch {

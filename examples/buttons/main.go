@@ -4,7 +4,6 @@ import (
 	"machine"
 
 	"image/color"
-	"runtime/interrupt"
 
 	"tinygo.org/x/tinydraw"
 	"tinygo.org/x/tinygba"
@@ -33,14 +32,16 @@ func main() {
 	// Set up the display
 	display.Configure()
 
-	interrupt.New(machine.IRQ_VBLANK, update).Enable()
 	clearScreen(black)
 
 	for {
+		tinygba.WaitForVBlank()
+
+		update()
 	}
 }
 
-func update(interrupt.Interrupt) {
+func update() {
 	key := tinygba.ReadButtons()
 
 	switch {
