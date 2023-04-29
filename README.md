@@ -14,7 +14,6 @@ import (
 
 	"image/color"
 
-	"tinygo.org/x/tinydraw"
 	"tinygo.org/x/tinygba"
 )
 
@@ -34,7 +33,7 @@ var (
 func main() {
 	display.Configure()
 
-	clearScreen(black)
+	tinygba.FillScreen(black)
 
 	for {
 		tinygba.WaitForVBlank()
@@ -48,26 +47,17 @@ func update() {
 
 	switch {
 	case tinygba.ButtonStart.IsPushed(key):
-		clearScreen(black)
+		tinygba.FillScreen(black)
 
 	case tinygba.ButtonSelect.IsPushed(key):
-		clearScreen(white)
+		tinygba.FillScreen(white)
 
 	case tinygba.ButtonRight.IsPushed(key):
-		clearScreen(green)
+		tinygba.FillScreen(green)
 
 	case tinygba.ButtonLeft.IsPushed(key):
-		clearScreen(red)
+		tinygba.FillScreen(red)
 	}
-}
-
-func clearScreen(c color.RGBA) {
-	tinydraw.FilledRectangle(
-		&display,
-		int16(0), int16(0),
-		screenWidth, screenHeight,
-		c,
-	)
 }
 ```
 
