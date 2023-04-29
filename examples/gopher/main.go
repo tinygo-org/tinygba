@@ -7,7 +7,6 @@ import (
 
 	"image/color"
 
-	"tinygo.org/x/tinydraw"
 	"tinygo.org/x/tinyfont"
 	"tinygo.org/x/tinyfont/freesans"
 	"tinygo.org/x/tinyfont/gophers"
@@ -71,7 +70,6 @@ func drawGophers() {
 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
 }
-
 
 func update() {
 	key := tinygba.ReadButtons()
@@ -139,10 +137,5 @@ func update() {
 }
 
 func clearScreen() {
-	tinydraw.FilledRectangle(
-		&display,
-		int16(0), int16(0),
-		screenWidth, screenHeight,
-		black,
-	)
+	tinygba.FillScreen(black)
 }

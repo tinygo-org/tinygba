@@ -5,7 +5,6 @@ import (
 
 	"image/color"
 
-	"tinygo.org/x/tinydraw"
 	"tinygo.org/x/tinygba"
 )
 
@@ -73,10 +72,5 @@ func update() {
 }
 
 func clearScreen(c color.RGBA) {
-	tinydraw.FilledRectangle(
-		&display,
-		int16(0), int16(0),
-		screenWidth, screenHeight,
-		c,
-	)
+	tinygba.FillScreen(c)
 }
