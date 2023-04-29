@@ -74,6 +74,7 @@ type Game struct {
 	appleX, appleY int16
 	Status         uint8
 	score          int
+	frame, delay   int
 }
 
 var splashed = false
@@ -99,6 +100,7 @@ func NewGame() *Game {
 		appleX: 5,
 		appleY: 5,
 		Status: GameSplash,
+		delay:  120,
 	}
 }
 
@@ -120,6 +122,11 @@ func (g *Game) Start() {
 }
 
 func (g *Game) Play(direction int) {
+	g.frame++
+	if g.frame%g.delay > 0 {
+		return
+	}
+
 	switch direction {
 	case SnakeLeft:
 		if g.snake.direction != SnakeLeft {
@@ -143,16 +150,17 @@ func (g *Game) Play(direction int) {
 }
 
 func (g *Game) Over() {
+	clearScreen()
 	splashed = false
 
-	g.Status = GameSplash
+	g.Status = GameOver
 }
 
 func (g *Game) splash() {
 	clearScreen()
 
-	tinyfont.WriteLine(&display, &freesans.Bold12pt7b, 10, 50, "SNAKE", g.colors[TEXT])
-	tinyfont.WriteLine(&display, &freesans.Regular12pt7b, 18, 100, "Press START", g.colors[TEXT])
+	tinyfont.WriteLine(&display, &freesans.Bold12pt7b, 50, 50, "SNAKE", g.colors[TEXT])
+	tinyfont.WriteLine(&display, &freesans.Regular9pt7b, 50, 100, "Press START", g.colors[TEXT])
 
 	if g.score > 0 {
 		scoreStr[7] = 48 + uint8((g.score)/100)
@@ -227,7 +235,9 @@ func (g *Game) moveSnake() {
 
 	if g.collisionWithSnake(x, y) {
 		g.score = int(g.snake.length - 3)
-		g.Status = GameOver
+		g.Over()
+
+		return
 	}
 
 	// draw head

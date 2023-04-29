@@ -11,9 +11,6 @@ import (
 var (
 	display = machine.Display
 
-	// Screen resolution
-	screenWidth, screenHeight = display.Size()
-
 	game = NewGame()
 )
 
