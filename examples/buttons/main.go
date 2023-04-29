@@ -9,11 +9,6 @@ import (
 )
 
 var (
-	display = machine.Display
-
-	// Screen resolution
-	screenWidth, screenHeight = display.Size()
-
 	// Colors
 	black = color.RGBA{}
 	white = color.RGBA{255, 255, 255, 255}
@@ -28,8 +23,7 @@ var (
 )
 
 func main() {
-	// Set up the display
-	display.Configure()
+	machine.Display.Configure()
 
 	tinygba.FillScreen(black)
 
