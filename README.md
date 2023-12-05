@@ -81,6 +81,18 @@ func update() {
 
 ## Roadmap
 
-- pallettes
-- sprites
-- ?
+- [ ] Display Control (https://problemkaputt.de/gbatek.htm#lcdvramoverview)
+	- [ ] BG Mode 0
+	- [ ] BG Mode 1
+	- [ ] BG Mode 2
+	- [X] BG Mode 3
+	- [ ] BG Mode 4
+	- [ ] BG Mode 5
+
+- [ ] OBJ (https://problemkaputt.de/gbatek.htm#lcdobjoverview)
+
+- [ ] Pallettes (https://problemkaputt.de/gbatek.htm#lcdcolorpalettes)
+
+- [ ] Sound (https://problemkaputt.de/gbatek.htm#gbasoundcontroller)
+
+- [ ] Interrupts (https://problemkaputt.de/gbatek.htm#gbainterruptcontrol)
