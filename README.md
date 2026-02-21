@@ -82,7 +82,7 @@ func update() {
 ## Roadmap
 
 - [ ] Display Control (https://problemkaputt.de/gbatek.htm#lcdvramoverview)
-	- [ ] BG Mode 0
+	- [X] BG Mode 0
 	- [ ] BG Mode 1
 	- [ ] BG Mode 2
 	- [X] BG Mode 3
@@ -94,5 +94,10 @@ func update() {
 - [ ] Pallettes (https://problemkaputt.de/gbatek.htm#lcdcolorpalettes)
 
 - [ ] Sound (https://problemkaputt.de/gbatek.htm#gbasoundcontroller)
+	- [ ] Sound Channel 1
+	- [X] Sound Channel 2
+	- [ ] Sound Channel 3
+	- [ ] Sound Channel 4
+	- [ ] Sound Channel DMA
 
 - [ ] Interrupts (https://problemkaputt.de/gbatek.htm#gbainterruptcontrol)
