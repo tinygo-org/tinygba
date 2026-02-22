@@ -8,6 +8,18 @@ Tools and helpers for developing GBA programs using TinyGo.
 
 Still highly experimental and subject to sudden changes.
 
+## Emulator
+
+You can run your TinyGo programs using the `mGBA` emulator:
+
+https://mgba.io/
+
+You will probably need to create a symlink to whichever executable you choose to install. For example, if you install the Qt based emulator:
+
+```shell
+sudo ln -s /usr/bin/mgba-qt /usr/bin/mgba
+```
+
 ## How to use
 
 ```go
@@ -77,6 +89,12 @@ func update() {
 
 	}
 }
+```
+
+Run the code:
+
+```
+tinygo run -target gameboy-advance ./examples/snake
 ```
 
 ## Roadmap
