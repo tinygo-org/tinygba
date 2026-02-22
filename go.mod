@@ -1,10 +1,10 @@
 module tinygo.org/x/tinygba
 
-go 1.20
+go 1.22.1
+
+require tinygo.org/x/tinyfont v0.6.0
 
 require (
-	tinygo.org/x/tinydraw v0.3.0
-	tinygo.org/x/tinyfont v0.3.1-0.20230427174829-145dfcef90ab
+	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
+	tinygo.org/x/drivers v0.34.0 // indirect
 )
-
-require tinygo.org/x/drivers v0.24.1-0.20230328175227-cba17ef125b0 // indirect
